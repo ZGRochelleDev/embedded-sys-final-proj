@@ -1,0 +1,43 @@
+Zoe Rochelle
+Final Project
+CSC530 - Dr. Blake
+04/27/2026
+
+Goal: build an embedded ML lock system
+Platform/devices:
+    XIAO ESP32-S3 Sense (onboard microphone)
+    Seeed expansion board (OLED and Sensor Connection).
+    Grove infrared sensor
+    SD card
+
+ToDos:
+  • Read a 4-digit unlock code from a file on the SD card at startup.
+  • Display the word LOCK on the OLED while the system is locked.
+  • Allow the user to enter the 4-digit code using the IR sensor and mini-controller.
+  • If the 4-digit code is correct, generate a random integer from 1 to 7.
+  • map that int it to the Password Vocabulary list, and prompt for the password
+      - do not tell the user the password, just display the number on the OLED
+  • Run an embedded ML inference pipeline on microphone input to recognize the password word.
+  • Unlock only when both authentication stages are correct
+
+Design:
+    Assumes the SD card has a .txt with "CODE:1234"
+    User must speak clearly into the microphone
+    Added a reset feature by pressing the button: red-middle-double-arrow 
+    The correct color prints to the serial monitor, but the LED will only display it's index
+
+Sources:
+    IR remote & buzzer - https://github.com/Arduino-IRremote/Arduino-IRremote?tab=readme-ov-file#examples-for-this-library
+                       - https://github.com/Arduino-IRremote/Arduino-IRremote/blob/master/examples/ReceiveDump/PinDefinitionsAndMore.h
+    LED - https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#ssd1306-128x64_noname-1
+    ML training - https://www.edgeimpulse.com/
+    Audio files for colors - https://figshare.com/s/50807c77f1acc943e4c3?file=50448711
+    Microphone - TestContinuous (Dr. Blake)
+*/
+
+To run:
+    Connect XIAO ESP32-S3 to USB
+    Open VS Code
+    Via pioarduino -> Upload
+    Activate Serial Monitor
+    Begin entering the PW via remote
